@@ -168,13 +168,13 @@ const ItemsAlbumWrapper: React.FC<Props> = ({ items }) => {
             endItem = sortedItems.length;
         }
         return sortedItems.slice(startItem, endItem)
-    }, [filteredItems, page, sortedItems])
+    }, [page, sortedItems])
 
     return (
 
         <Box sx={{ flexGrow: 1 }}>
             <AppBar position="relative" sx={{ py: 1 }} color="transparent" elevation={0}>
-                <Grid component={Toolbar} container spacing={3} columns={{ xs: 4, sm: 12, md:12 }}>
+                <Grid component={Toolbar} container spacing={3} columns={{ xs: 4, sm: 12, md: 12 }}>
                     {/* Filter Drawer */}
                     <Grid
                         xs={2}
