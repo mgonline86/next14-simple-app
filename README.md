@@ -1,5 +1,7 @@
 # Simple Next App
 
+## 👉 [Live Demo](https://ece-county.vercel.app)
+
 This project is a web application built with Next.js, React, Material UI and Zustand State Manager, designed to display a list of items and include various features such as search, sorting, filtering, and shopping cart functionality.
 
 ## Getting Started

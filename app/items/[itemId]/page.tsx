@@ -1,5 +1,4 @@
-'use client';
-
+import type { Metadata, ResolvingMetadata } from 'next'
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import IconButton from '@mui/material/IconButton';
@@ -9,30 +8,34 @@ import Typography from '@mui/material/Typography';
 import data from '../../data.json';
 import Grid from '@mui/material/Unstable_Grid2/Grid2';
 import { notFound } from 'next/navigation'
-import Add from '@mui/icons-material/Add';
 import ArrowBack from '@mui/icons-material/ArrowBack';
-import Remove from '@mui/icons-material/Remove';
 import Link from 'next/link';
-import { useState } from 'react';
-import AddToCartBtn from '@/app/components/AddToCartBtn';
 import Image from 'next/image';
+import ItemPageActionGroup from "@/app/components/ItemPageActionGroup";
 
-export default function ItemPage({ params }: { params: { itemId: string } }) {
-    const { items } = data;
+const { items } = data;
+
+type Props = {
+    params: { itemId: string }
+    searchParams: { [key: string]: string | string[] | undefined }
+}
+export async function generateMetadata(
+    { params, searchParams }: Props,
+    parent: ResolvingMetadata
+): Promise<Metadata> {
+    // read route params
+    const id = params.itemId
+
+    // fetch data
     const item: IItem = items.find(i => i.id === Number(params.itemId))!;
 
-    const [itemQty, setItemQty] = useState(1);
-
-
-
-    const updateItemQty = (qty: number) => {
-        const newQty = itemQty + qty;
-        if (newQty > 99 || newQty < 1) {
-            return;
-        }
-        setItemQty(newQty)
+    return {
+        title: item.title,
     }
+}
 
+export default function ItemPage({ params, searchParams }: Props) {
+    const item: IItem = items.find(i => i.id === Number(params.itemId))!;
 
     if (!item) {
         return notFound()
@@ -55,7 +58,7 @@ export default function ItemPage({ params }: { params: { itemId: string } }) {
                             fill={true}
                             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                             priority={true}
-                            placeholder = 'empty'
+                            placeholder='empty'
                             style={{
                                 objectFit: "cover",
                                 objectPosition: "top",
@@ -69,41 +72,7 @@ export default function ItemPage({ params }: { params: { itemId: string } }) {
                         <Typography gutterBottom variant='h4'>{item?.title}</Typography>
                         <Rating name="read-only" value={item?.rating} precision={0.1} readOnly />
                         <Typography variant='h6'>Price: ${item.price}</Typography>
-                        <Grid container>
-                            <Grid>
-                                <Box
-                                    sx={{
-                                        display: 'flex',
-                                        alignItems: 'center',
-                                        justifyContent: 'space-between',
-                                        pr: 4,
-                                    }}
-                                >
-                                    <Typography
-                                        sx={{ display: 'inline' }}
-                                        component="span"
-                                        variant="body2"
-                                        color="text.primary"
-                                    >
-                                        Qty:
-                                    </Typography>
-                                    <IconButton
-                                        onClick={() => updateItemQty(-1)}
-                                    >
-                                        <Remove />
-                                    </IconButton>
-                                    <Typography>{itemQty}</Typography>
-                                    <IconButton
-                                        onClick={() => updateItemQty(1)}
-                                    >
-                                        <Add />
-                                    </IconButton>
-                                </Box>
-                            </Grid>
-                            <Grid>
-                                <AddToCartBtn item={item} qty={itemQty} />
-                            </Grid>
-                        </Grid>
+                        <ItemPageActionGroup item={item} />
                         <Typography variant='h6'>Description:</Typography>
                         <Typography>{item?.description}</Typography>
                     </Stack>
