@@ -147,12 +147,12 @@ const ItemsAlbumWrapper: React.FC<Props> = ({ items }) => {
             &&
             i.title.toLowerCase().includes(query.trim().toLowerCase())
         );
-    }, [items, priceRange, sortBy, query])
+    }, [items, priceRange, query])
 
     // Handling Sorting
     const sortedItems = useMemo(() => {
         return [...filteredItems].sort(sortItems(sortBy));
-    }, [filteredItems])
+    }, [filteredItems, sortBy])
 
 
     // Handling Pagination
@@ -168,7 +168,7 @@ const ItemsAlbumWrapper: React.FC<Props> = ({ items }) => {
             endItem = sortedItems.length;
         }
         return sortedItems.slice(startItem, endItem)
-    }, [filteredItems, page])
+    }, [filteredItems, page, sortedItems])
 
     return (
 

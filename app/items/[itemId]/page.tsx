@@ -17,7 +17,7 @@ import { useState } from 'react';
 import AddToCartBtn from '@/app/components/AddToCartBtn';
 import Image from 'next/image';
 
-export default function itemPage({ params }: { params: { itemId: string } }) {
+export default function ItemPage({ params }: { params: { itemId: string } }) {
     const { items } = data;
     const item: IItem = items.find(i => i.id === Number(params.itemId))!;
 
