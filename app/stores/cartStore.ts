@@ -66,6 +66,13 @@ export const useCartStore = create<CartState>()(
                 set((state) => ({ isDrawerOpen: false }));
             },
         }),
-        { name: 'cartStore' }
+        {
+            name: 'cartStore',
+            // Exclude Cart Drawer State from Storage
+            partialize: (state) =>
+            Object.fromEntries(
+              Object.entries(state).filter(([key]) => !['isDrawerOpen'].includes(key)),
+            ),
+        }
     )
 )
