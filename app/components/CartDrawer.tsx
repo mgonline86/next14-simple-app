@@ -46,7 +46,7 @@ export default function CartDrawer() {
                         px: {xs:1, sm:2},
                     }}
                 >
-                    <Stack spacing={3} height={`100vh`}>
+                    <Stack spacing={3} height={`100dvh`}>
                         <Box>
                             <IconButton
                                 onClick={closeDrawer}

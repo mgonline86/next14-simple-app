@@ -28,6 +28,7 @@ const CartList: React.FC = () => {
                     width: '100%',
                     bgcolor: 'background.paper',
                     flex: 1,
+                    minHeight: 200,
                     overflowY: 'auto',
                     borderRadius: 5,
                 }}
