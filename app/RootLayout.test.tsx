@@ -3,7 +3,7 @@ import { render, screen } from '@testing-library/react'
 import AppWrapper from './components/AppWrapper';
 
 
-render(<AppWrapper children="Test" />);
+render(<AppWrapper>Test</AppWrapper>);
 
 test('renders a header section', () => {
   const heading = screen.getByRole('banner');
