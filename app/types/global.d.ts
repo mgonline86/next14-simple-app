@@ -7,7 +7,7 @@ declare global {
         description: string,
         thumbnail: string,
         price: number,
-        rating: number?,
+        rating?: number,
     }
     
     interface lineItem {

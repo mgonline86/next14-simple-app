@@ -23,12 +23,12 @@ const CartListItem: React.FC<Props> = ({ item }) => {
 
     return (
         <Fragment>
-            <ListItem alignItems="flex-start" sx={{ pb: 0 }}>
+            <ListItem alignItems="flex-start" sx={{ pb: 0 }} data-testid="cart-list-item">
                 <ListItemAvatar>
                     <Avatar alt={item.title} src={item.thumbnail} />
                 </ListItemAvatar>
                 <ListItemText
-                    primary={<Typography variant='body1' noWrap>{item.title}</Typography>}
+                    primary={<Typography variant='body1'>{item.title}</Typography>}
                     secondary={
                         <Fragment>
                             <Typography

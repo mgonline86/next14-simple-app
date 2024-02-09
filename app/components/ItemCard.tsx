@@ -26,6 +26,7 @@ const ItemCard: React.FC<Props> = ({ item }) => {
         justifyContent: 'space-between',
         textAlign: 'center',
       }}
+      data-testid="item-card"
     >
       <CardActionArea href={`/items/${item.id}`}>
         <CardMedia
@@ -43,16 +44,24 @@ const ItemCard: React.FC<Props> = ({ item }) => {
               textTransform: 'uppercase',
               fontWeight: 600,
             }}
+            data-testid="item-card-title"
           >
             {item.title}
           </Typography>
-          <Typography variant="caption" color="text.secondary">
+          <Typography
+            variant="caption"
+            color="text.secondary"
+            data-testid="item-card-desc"
+          >
             {item.description}
           </Typography>
         </CardContent>
       </CardActionArea>
       <Box sx={{ width: "100%" }}>
-        <Typography variant="h5">
+        <Typography
+          variant="h5"
+          data-testid="item-card-price"
+        >
           ${item.price}
         </Typography>
         <CardActions sx={{ width: '100%' }}>
