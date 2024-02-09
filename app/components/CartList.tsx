@@ -45,7 +45,16 @@ const CartList: React.FC = () => {
                     )
                 }
             </List>
-            <Typography variant='h6' sx={{ textAlign: 'center', mt: 2, mb: 3 }}>Total: ${cartTotalPrice}</Typography>
+            <Typography
+                variant='h6'
+                sx={{
+                    textAlign: 'center',
+                    mt: 2,
+                    mb: 3
+                }}
+            >
+                Total: ${cartTotalPrice}
+            </Typography>
             <Divider />
             <Box sx={{ textAlign: 'center', py: 2 }}>
                 <Link href='/checkout' onClick={closeDrawer}>

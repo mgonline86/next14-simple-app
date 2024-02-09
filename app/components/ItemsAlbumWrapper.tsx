@@ -65,7 +65,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 const sortItems = (selectedSortBy: string | undefined) => {
     if (selectedSortBy === 'z-a') {
-        return (a: IItem, b: IItem) => b.title.toLowerCase().localeCompare(a.title)
+        return (a: IItem, b: IItem) => b.title.toLowerCase().localeCompare(a.title);
     }
 
     if (selectedSortBy === 'low-high') {
@@ -172,7 +172,7 @@ const ItemsAlbumWrapper: React.FC<Props> = ({ items }) => {
 
     return (
 
-        <Box sx={{ flexGrow: 1 }}>
+        <Box sx={{ flexGrow: 1 }} data-testid="items-album-wrapper">
             <AppBar position="relative" sx={{ py: 1 }} color="transparent" elevation={0}>
                 <Grid component={Toolbar} container spacing={3} columns={{ xs: 4, sm: 12, md: 12 }}>
                     {/* Filter Drawer */}
@@ -191,6 +191,7 @@ const ItemsAlbumWrapper: React.FC<Props> = ({ items }) => {
                             aria-label="open drawer"
                             sx={{ mr: 2 }}
                             onClick={() => setIsDrawerOpen(true)}
+                            data-testid="price-filter-btn"
                         >
                             <FilterAltIcon />
                         </IconButton>
@@ -212,7 +213,10 @@ const ItemsAlbumWrapper: React.FC<Props> = ({ items }) => {
                             </SearchIconWrapper>
                             <StyledInputBase
                                 placeholder="Search by Name…"
-                                inputProps={{ 'aria-label': 'search' }}
+                                inputProps={{
+                                    'aria-label': 'search',
+                                    'data-testid': 'search-by-name'
+                                }}
                                 value={query}
                                 onChange={handleQuery}
                             />
@@ -238,6 +242,7 @@ const ItemsAlbumWrapper: React.FC<Props> = ({ items }) => {
                                 autoWidth
                                 value={sortBy}
                                 onChange={handleSortBy}
+                                inputProps={{ 'data-testid': 'sort-items-dropdown' }}
                             >
                                 <MenuItem value='a-z'>Alphabetically, A-Z</MenuItem>
                                 <MenuItem value='z-a'>Alphabetically, Z-A</MenuItem>
@@ -286,6 +291,7 @@ const ItemsAlbumWrapper: React.FC<Props> = ({ items }) => {
                                 min={0}
                                 max={max}
                                 step={1}
+                                data-testid="price-filter-slider"
                             />
                             <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
                                 <Typography

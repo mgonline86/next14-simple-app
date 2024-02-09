@@ -36,11 +36,12 @@ export default function CartDrawer() {
                 anchor='right'
                 open={isDrawerOpen}
                 onClose={closeDrawer}
+                data-testid="cart-drawer"
             >
                 <Box
                     sx={{
-                        minWidth: {
-                            xs: '100vw',
+                        width: {
+                            xs: '90vw',
                             sm: 400,
                         },
                         px: {xs:1, sm:2},
